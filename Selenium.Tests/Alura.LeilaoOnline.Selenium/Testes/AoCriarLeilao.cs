@@ -1,34 +1,43 @@
 ﻿using Alura.LeilaoOnline.Selenium.Fixtures;
 using Alura.LeilaoOnline.Selenium.PageObjects;
 using OpenQA.Selenium;
+using System;
+using System.Net.Mail;
+using System.Threading;
 using Xunit;
+
 
 namespace Alura.LeilaoOnline.Selenium.Testes
 {
     [Collection("ChromeDriver")]
-    public class AoEfetuarLogout
+    public class AoCriarLeilao
     {
         private readonly IWebDriver _driver;
         private readonly RegistroPageObject page;
         private readonly DashboardInteressadaPO dashboardInteressadaPO;
+        private readonly NovoLeilaoPO novoLeilaoPO;
 
-        public AoEfetuarLogout(TestFixtures driver)
+        public AoCriarLeilao(TestFixtures driver)
         {
             _driver = driver.Driver;
             page = new RegistroPageObject(_driver);
-            dashboardInteressadaPO = new DashboardInteressadaPO(_driver);
+            novoLeilaoPO = new NovoLeilaoPO(_driver);
         }
 
         [Fact]
-        public void DadoLoginValidoDeveIrParaAHomeNaoLogada()
+        public void CriarUmNovoLeilao()
         {
             // arrange
             page.VisitarLogin();
             page.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "123");
             page.SubmeterLogin();
 
+            novoLeilaoPO.IrParaTelaNovoLeilao();
+            novoLeilaoPO.PreencherFormularioCadastroLeilao("tit", "desc", 1000, DateTime.Now, DateTime.Now.AddDays(20), "1", "C:\\_dev\\gitpagimaxx\\selenium\\profile-pic.png");
+
+            //Thread.Sleep(10000);
             // act
-            dashboardInteressadaPO.EfeturarLogout();    
+            
 
             // assert
             Assert.Contains("Próximos Leilões", _driver.PageSource);
