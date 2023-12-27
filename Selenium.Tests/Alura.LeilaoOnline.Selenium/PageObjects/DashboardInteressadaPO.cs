@@ -26,44 +26,30 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             byLogoutLink = By.Id("logout");
             byMeuPerfilLink = By.Id("meu-perfil");
             bySelectCategorias = By.ClassName("select-wrapper");
+            byInputTermo = By.Id("termo");
+            byInputAndamento = By.ClassName("switch");
+            byBotaoPesquisar = By.CssSelector("form>button.btn");
         }
 
         public void IrParaTela(string tela)
             => driver.Navigate().GoToUrl($"{_urlBase}{tela}");
 
-        public void PesquisarLeiloes(List<string> categorias)
+        public void PesquisarLeiloes(List<string> categorias, string termo, bool andamento)
         {
-            // capturar o elemento wrapper
-            var selectWrapper = driver.FindElement(bySelectCategorias);
-            selectWrapper.Click();
+            var select = new SelectMaterialize(driver, bySelectCategorias);
+
+            select.DeselectAll();
+            Thread.Sleep(2000);
+            categorias.ForEach(c => { select.SelectByText(c); });
+            Thread.Sleep(2000);
+            driver.FindElement(byInputTermo).SendKeys(termo);
+            Thread.Sleep(2000);
+            if (andamento)
+                driver.FindElement(byInputAndamento).Click();
 
             Thread.Sleep(2000);
 
-            var opcoes = selectWrapper.FindElements(By.CssSelector("li>span")).ToList();
-
-            // desmarcar as opções
-            opcoes.ForEach(o => { o.Click(); });
-
-            Thread.Sleep(2000);
-
-            // procurar as categorias enviadas por parametro
-            categorias.ForEach(c => 
-            { 
-                opcoes.Where(o => 
-                    o.Text.Contains(c))
-                    .ToList()
-                    .ForEach(selecionar => 
-                    {
-                        selecionar.Click(); 
-                    }
-                ); 
-            });
-
-            Thread.Sleep(2000);
-
-            selectWrapper.FindElement(By.TagName("li")).SendKeys(Keys.Tab);
-
-            Thread.Sleep(8000);
+            driver.FindElement(byBotaoPesquisar).Click();
         }
 
         public void EfeturarLogout()
