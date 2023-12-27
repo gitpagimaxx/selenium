@@ -37,6 +37,10 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
                     usuario = _repo.BuscarPorId(usuario.Id);
                     //autenticar
                     HttpContext.Session.Set<Usuario>("usuarioLogado", usuario);
+                    if (usuario.Interessada == null)
+                    {
+                        return RedirectToAction("Index", "Leiloes");
+                    }
                     return RedirectToAction("Index", "Interessadas");
                 }
                 ModelState.AddModelError("usuarioInvalido", "Usuário não encontrado");

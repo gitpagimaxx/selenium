@@ -2,8 +2,6 @@
 using Alura.LeilaoOnline.Selenium.PageObjects;
 using OpenQA.Selenium;
 using System;
-using System.Net.Mail;
-using System.Threading;
 using Xunit;
 
 
@@ -33,14 +31,13 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             page.SubmeterLogin();
 
             novoLeilaoPO.IrParaTelaNovoLeilao();
-            novoLeilaoPO.PreencherFormularioCadastroLeilao("tit", "desc", 1000, DateTime.Now, DateTime.Now.AddDays(20), "1", "C:\\_dev\\gitpagimaxx\\selenium\\profile-pic.png");
+            novoLeilaoPO.PreencherFormularioCadastroLeilao("tit", "desc", 1000, DateTime.Now, DateTime.Now.AddDays(20), "Arte e Pintura", "C:\\_dev\\gitpagimaxx\\selenium\\profile-pic.png");
 
-            //Thread.Sleep(10000);
             // act
-            
+            novoLeilaoPO.SubmeteFormulario();
 
             // assert
-            Assert.Contains("Próximos Leilões", _driver.PageSource);
+            Assert.Contains("Leilões cadastrados", _driver.PageSource);
         }
     }
 }
