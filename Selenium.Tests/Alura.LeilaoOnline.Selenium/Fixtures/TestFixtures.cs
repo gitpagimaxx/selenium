@@ -13,6 +13,7 @@ namespace Alura.LeilaoOnline.Selenium.Fixtures
         public TestFixtures()
         {
             Driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
+            //Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
         // teardown
