@@ -33,7 +33,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
 
             _dashboardInteressadaPO.IrParaTela("/Interessadas");
 
-            _dashboardInteressadaPO.PesquisarLeiloes(new List<string> { "Automóveis", "Coleções" }, "", true);
+            _dashboardInteressadaPO.Filtro.PesquisarLeiloes(new List<string> { "Automóveis", "Coleções" }, "", true);
 
             //assert
             Assert.Contains("Resultado da pesquisa", _driver.PageSource);
