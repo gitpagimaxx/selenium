@@ -23,9 +23,9 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         [Fact]
         public void DadoLoginDeveMostrarTresCategprias()
         {
-            _page.VisitarLogin();
-            _page.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "123");
-            _page.SubmeterLogin();
+            _page.Login.VisitarLogin();
+            _page.Login.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "123");
+            _page.Login.SubmeterLogin();
 
             _novoLeilaoPO.IrParaTelaNovoLeilao();
 

@@ -23,9 +23,9 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void DadoLoginValidoDeveIrParaAHomeNaoLogada()
         {
             // arrange
-            page.VisitarLogin();
-            page.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "123");
-            page.SubmeterLogin();
+            page.Login.VisitarLogin();
+            page.Login.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "123");
+            page.Login.SubmeterLogin();
 
             // act
             dashboardInteressadaPO.Menu.EfeturarLogout();    

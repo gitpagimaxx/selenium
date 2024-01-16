@@ -26,9 +26,9 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void CriarUmNovoLeilao()
         {
             // arrange
-            page.VisitarLogin();
-            page.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "123");
-            page.SubmeterLogin();
+            page.Login.VisitarLogin();
+            page.Login.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "123");
+            page.Login.SubmeterLogin();
 
             novoLeilaoPO.IrParaTelaNovoLeilao();
             novoLeilaoPO.PreencherFormularioCadastroLeilao("tit", "desc", 1000, DateTime.Now, DateTime.Now.AddDays(20), "Arte e Pintura", "C:\\_dev\\gitpagimaxx\\selenium\\profile-pic.png");

@@ -25,10 +25,10 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         [Fact]
         public void DadoLoginRealizadoDeveAtualizarLanceAtual()
         {
-            page.VisitarLogin();
+            page.Login.VisitarLogin();
 
-            page.PreencherFormularioLogin(login: "admin@example.org", password: "123");
-            page.SubmeterLogin();
+            page.Login.PreencherFormularioLogin(login: "admin@example.org", password: "123");
+            page.Login.SubmeterLogin();
 
             detalheLeilao.Visitar(1);
 

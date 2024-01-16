@@ -27,9 +27,12 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         [Fact]
         public void MostrarPainelResultado()
         {
-            _page.VisitarLogin();
-            _page.PreencherFormularioLogin(login: "fulano@example.org", password: "123");
-            _page.SubmeterLogin();
+            _page.Login.ExecutarLogin(login: "fulano@example.org", password: "123");
+
+            _page.Login.VisitarLogin()
+                .InformarLogin("fulano@example.org")
+                .InformarPassword(password: "123")
+                .SubmeterLogin();
 
             _dashboardInteressadaPO.IrParaTela("/Interessadas");
 

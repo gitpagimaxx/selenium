@@ -20,10 +20,10 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         [Fact]
         public void AoEfetuarLoginValido()
         {
-            page.VisitarLogin();
+            page.Login.VisitarLogin();
 
-            page.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "123");
-            page.SubmeterLogin();
+            page.Login.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "123");
+            page.Login.SubmeterLogin();
 
             Assert.Contains("Minhas Ofertas", _driver.PageSource);
         }
@@ -31,10 +31,10 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         [Fact]
         public void AoEfetuarLoginInvalido()
         {
-            page.VisitarLogin();
+            page.Login.VisitarLogin();
 
-            page.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "");
-            page.SubmeterLogin();
+            page.Login.PreencherFormularioLogin(login: "diego@pagimaxx.com", password: "");
+            page.Login.SubmeterLogin();
 
             Assert.Contains("Minhas Ofertas", _driver.PageSource);
         }

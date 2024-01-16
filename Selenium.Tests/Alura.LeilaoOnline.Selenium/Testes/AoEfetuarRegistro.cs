@@ -83,7 +83,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             page.SubmeteFormularioRegistro();
 
             // assert
-            Assert.Equal("The Nome field is required.", page.MensagemErroNome);
+            Assert.Equal("The Nome field is required.", page.Login.MensagemErroNome);
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             page.SubmeteFormularioRegistro();
 
             // assert
-            Assert.Equal("The Endereço de Email field is required.", page.MensagemErroEmail);
+            Assert.Equal("The Endereço de Email field is required.", page.Login.MensagemErroEmail);
         }
 
         [Fact]
